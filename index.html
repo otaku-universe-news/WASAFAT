@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="وصفات صحية سهلة وسريعة للطبخ في المنزل. أكلات صحية للرجيم والدايت مع السعرات الحرارية وطريقة التحضير خطوة بخطوة">
+    <meta name="keywords" content="وصفات صحية, أكلات صحية, رجيم, دايت, طبخ صحي, وصفات سريعة, سعرات حرارية">
+    <meta name="author" content="وصفاتي الصحية">
+    <meta property="og:title" content="وصفاتي الصحية - وصفات صحية سهلة وسريعة">
+    <meta property="og:description" content="مجموعة متنوعة من الوصفات الصحية السهلة مع السعرات الحرارية">
+    <meta property="og:type" content="website">
+    <title>وصفاتي الصحية - وصفات صحية سهلة وسريعة للطبخ</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        nav {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        nav a:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .search-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            text-align: right;
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+        
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        
+        .recipe-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .calories {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .recipe-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .tips-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .tips-section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tip-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+        
+        .tip-card h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #667eea;
+            background: none;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            background: #f0f0f0;
+        }
+        
+        .ingredients-list {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .ingredients-list ul {
+            list-style-position: inside;
+            line-height: 2;
+        }
+        
+        .steps-list {
+            margin: 1.5rem 0;
+        }
+        
+        .steps-list ol {
+            list-style-position: inside;
+            line-height: 2;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .recipes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🥗 وصفاتي الصحية</h1>
+        <p>وصفات صحية سهلة وسريعة لحياة أفضل</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#recipes">الوصفات</a></li>
+            <li><a href="#tips">نصائح صحية</a></li>
+            <li><a href="#about">من نحن</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن وصفة صحية... (مثال: سلطة، دجاج، شوربة)">
+        </div>
+        
+        <section id="recipes">
+            <div class="recipes-grid">
+                <article class="recipe-card" data-recipe="1">
+                    <div class="recipe-image">🥗</div>
+                    <div class="recipe-content">
+                        <h3>سلطة الكينوا بالخضار</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 15 دقيقة</span>
+                            <span class="calories">250 سعرة</span>
+                        </div>
+                        <p>سلطة صحية غنية بالبروتين والألياف، مثالية للرجيم والدايت. سهلة التحضير ولذيذة جداً.</p>
+                        <button class="btn" onclick="openRecipe(1)">عرض الوصفة</button>
+                    </div>
+                </article>
+                
+                <article class="recipe-card" data-recipe="2">
+                    <div class="recipe-image">🍗</div>
+                    <div class="recipe-content">
+                        <h3>دجاج مشوي بالأعشاب</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 30 دقيقة</span>
+                            <span class="calories">320 سعرة</span>
+                        </div>
+                        <p>صدور دجاج مشوية بطريقة صحية مع أعشاب طبيعية، غنية بالبروتين وقليلة الدهون.</p>
+                        <button class="btn" onclick="openRecipe(2)">عرض الوصفة</button>
+                    </div>
+                </article>
+                
+                <article class="recipe-card" data-recipe="3">
+                    <div class="recipe-image">🥣</div>
+                    <div class="recipe-content">
+                        <h3">شوربة العدس الصحية</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 25 دقيقة</span>
+                            <span class="calories">180 سعرة</span>
+                        </div>
+                        <p>شوربة عدس غنية بالبروتين النباتي والألياف، دافئة ومغذية ومثالية للشتاء.</p>
+                        <button class="btn" onclick="openRecipe(3)">عرض الوصفة</button>
+                    </div>
+                </article>
+                
+                <article class="recipe-card" data-recipe="4">
+                    <div class="recipe-image">🥙</div>
+                    <div class="recipe-content">
+                        <h3>راب التونة الصحي</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 10 دقائق</span>
+                            <span class="calories">280 سعرة</span>
+                        </div>
+                        <p>وجبة سريعة وصحية مليئة بالبروتين، مثالية لوجبة الغداء أو العشاء الخفيف.</p>
+                        <button class="btn" onclick="openRecipe(4)">عرض الوصفة</button>
+                    </div>
+                </article>
+                
+                <article class="recipe-card" data-recipe="5">
+                    <div class="recipe-image">🍓</div>
+                    <div class="recipe-content">
+                        <h3>سموثي الفواكه الطبيعي</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 5 دقائق</span>
+                            <span class="calories">150 سعرة</span>
+                        </div>
+                        <p>مشروب منعش وصحي غني بالفيتامينات والمعادن، مثالي لبداية اليوم أو بعد التمرين.</p>
+                        <button class="btn" onclick="openRecipe(5)">عرض الوصفة</button>
+                    </div>
+                </article>
+                
+                <article class="recipe-card" data-recipe="6">
+                    <div class="recipe-image">🥦</div>
+                    <div class="recipe-content">
+                        <h3>خضار مشكلة بالفرن</h3>
+                        <div class="recipe-meta">
+                            <span class="meta-item">⏱️ 35 دقيقة</span>
+                            <span class="calories">160 سعرة</span>
+                        </div>
+                        <p>خضروات ملونة مشوية في الفرن بطريقة صحية، غنية بالفيتامينات والمعادن.</p>
+                        <button class="btn" onclick="openRecipe(6)">عرض الوصفة</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <section id="tips" class="tips-section">
+            <h2>نصائح صحية مهمة</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>💧 شرب الماء</h3>
+                    <p>احرص على شرب 8 أكواب من الماء يومياً للحفاظ على صحة الجسم ونضارة البشرة</p>
+                </div>
+                <div class="tip-card">
+                    <h3>🏃 ممارسة الرياضة</h3>
+                    <p>مارس الرياضة لمدة 30 دقيقة يومياً على الأقل للحفاظ على لياقتك البدنية</p>
+                </div>
+                <div class="tip-card">
+                    <h3">🥬 تناول الخضروات</h3>
+                    <p>أضف الخضروات الطازجة إلى وجباتك اليومية للحصول على الفيتامينات والمعادن</p>
+                </div>
+                <div class="tip-card">
+                    <h3>😴 النوم الكافي</h3>
+                    <p>احصل على 7-8 ساعات من النوم يومياً لتجديد نشاط جسمك وعقلك</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about" class="tips-section">
+            <h2>من نحن</h2>
+            <p style="line-height: 2; font-size: 1.1rem;">
+                وصفاتي الصحية هو موقع متخصص في تقديم وصفات صحية وسهلة التحضير للأشخاص الذين يبحثون عن نمط حياة صحي. نحن نؤمن بأن الطعام الصحي يمكن أن يكون لذيذاً وسهل التحضير في نفس الوقت. جميع وصفاتنا مدروسة بعناية من حيث السعرات الحرارية والقيمة الغذائية.
+            </p>
+        </section>
+        
+        <section id="contact" class="tips-section">
+            <h2>تواصل معنا</h2>
+            <p style="line-height: 2; font-size: 1.1rem;">
+                لديك استفسار أو اقتراح؟ نحن نحب أن نسمع منك!<br>
+                يمكنك التواصل معنا عبر البريد الإلكتروني: <a href="mailto:info@wasafati.com">info@wasafati.com</a>
+            </p>
+        </section>
+    </div>
+    
+    <div id="recipeModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeRecipe()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 وصفاتي الصحية - جميع الحقوق محفوظة</p>
+        <p>موقع متخصص في الوصفات الصحية والطبخ الصحي</p>
+    </footer>
+    
+    <script>
+        const recipes = {
+            1: {
+                title: "سلطة الكينوا بالخضار",
+                emoji: "🥗",
+                time: "15 دقيقة",
+                calories: "250 سعرة",
+                ingredients: [
+                    "كوب كينوا مطبوخة",
+                    "خيار مقطع مكعبات",
+                    "طماطم مقطعة",
+                    "فلفل ألوان",
+                    "بقدونس طازج",
+                    "عصير ليمون",
+                    "ملعقة زيت زيتون",
+                    "ملح وفلفل حسب الرغبة"
+                ],
+                steps: [
+                    "اطبخي الكينوا حسب التعليمات واتركيها لتبرد",
+                    "قطعي جميع الخضروات إلى مكعبات صغيرة",
+                    "اخلطي الكينوا مع الخضروات في وعاء كبير",
+                    "أضيفي عصير الليمون وزيت الزيتون",
+                    "تبلي بالملح والفلفل",
+                    "قدميها باردة أو في درجة حرارة الغرفة"
+                ]
+            },
+            2: {
+                title: "دجاج مشوي بالأعشاب",
+                emoji: "🍗",
+                time: "30 دقيقة",
+                calories: "320 سعرة",
+                ingredients: [
+                    "2 صدر دجاج",
+                    "ملعقة زيت زيتون",
+                    "ثوم مفروم",
+                    "روزماري طازج",
+                    "زعتر",
+                    "ملح وفلفل أسود",
+                    "عصير ليمون"
+                ],
+                steps: [
+                    "سخني الفرن على حرارة 200 درجة مئوية",
+                    "اخلطي زيت الزيتون مع الثوم والأعشاب",
+                    "ادهني صدور الدجاج بالخليط",
+                    "رتبي الدجاج في صينية الفرن",
+                    "اشوي لمدة 25-30 دقيقة حتى ينضج",
+                    "قدميه ساخناً مع سلطة خضراء"
+                ]
+            },
+            3: {
+                title: "شوربة العدس الصحية",
+                emoji: "🥣",
+                time: "25 دقيقة",
+                calories: "180 سعرة",
+                ingredients: [
+                    "كوب عدس أصفر",
+                    "بصلة متوسطة",
+                    "جزرة مقطعة",
+                    "ثوم مفروم",
+                    "كمون وكركم",
+                    "ملح وفلفل",
+                    "4 أكواب ماء أو مرق خضار"
+                ],
+                steps: [
+                    "اغسلي العدس جيداً",
+                    "قلّي البصل والثوم حتى يذبل",
+                    "أضيفي العدس والجزر والماء",
+                    "أضيفي التوابل واتركيه يغلي",
+                    "خففي الحرارة واتركيه 20 دقيقة",
+                    "اخفقي الشوربة للحصول على قوام ناعم"
+                ]
+            },
+            4: {
+                title: "راب التونة الصحي",
+                emoji: "🥙",
+                time: "10 دقائق",
+                calories: "280 سعرة",
+                ingredients: [
+                    "خبز تورتيلا قمح كامل",
+                    "علبة تونة مصفاة",
+                    "خس مقطع",
+                    "طماطم شرائح",
+                    "خيار",
+                    "زبادي قليل الدسم",
+                    "عصير ليمون"
+                ],
+                steps: [
+                    "اخلطي التونة مع الزبادي وعصير الليمون",
+                    "افردي خبز التورتيلا",
+                    "ضعي خليط التونة في المنتصف",
+                    "أضيفي الخضروات الطازجة",
+                    "لفي الخبز بإحكام",
+                    "قطعيه بالنصف وقدميه"
+                ]
+            },
+            5: {
+                title: "سموثي الفواكه الطبيعي",
+                emoji: "🍓",
+                time: "5 دقائق",
+                calories: "150 سعرة",
+                ingredients: [
+                    "موز مجمد",
+                    "فراولة طازجة",
+                    "حليب لوز أو حليب قليل الدسم",
+                    "ملعقة عسل (اختياري)",
+                    "بذور الشيا (اختياري)"
+                ],
+                steps: [
+                    "ضعي جميع المكونات في الخلاط",
+                    "اخلطي حتى يصبح القوام ناعماً",
+                    "أضيفي الثلج إذا رغبت",
+                    "اسكبيه في كأس التقديم",
+                    "زينيه بشرائح الفواكه الطازجة"
+                ]
+            },
+            6: {
+                title: "خضار مشكلة بالفرن",
+                emoji: "🥦",
+                time: "35 دقيقة",
+                calories: "160 سعرة",
+                ingredients: [
+                    "بروكلي",
+                    "جزر",
+                    "فلفل ألوان",
+                    "كوسة",
+                    "زيت زيتون",
+                    "ثوم بودر",
+                    "ملح وفلفل"
+                ],
+                steps: [
+                    "سخني الفرن على 200 درجة",
+                    "قطعي الخضروات إلى قطع متساوية",
+                    "اخلطيها مع زيت الزيتون والتوابل",
+                    "افرديها في صينية الفرن",
+                    "اشويها لمدة 30-35 دقيقة",
+                    "قلبيها مرة واحدة في المنتصف"
+                ]
+            }
+        };
+        
+        function openRecipe(id) {
+            const recipe = recipes[id];
+            const modal = document.getElementById('recipeModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            let ingredientsList = recipe.ingredients.map(ing => `<li>${ing}</li>`).join('');
+            let stepsList = recipe.steps.map((step, index) => `<li>${step}</li>`).join('');
+            
+            modalBody.innerHTML = `
+                <div style="text-align: center; font-size: 5rem; margin-bottom: 1rem;">${recipe.emoji}</div>
+                <h2 style="color: #667eea; text-align: center; margin-bottom: 1rem;">${recipe.title}</h2>
+                <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap;">
+                    <span style="color: #666;">⏱️ ${recipe.time}</span>
+                    <span class="calories">${recipe.calories}</span>
+                </div>
+                
+                <div class="ingredients-list">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">المقادير:</h3>
+                    <ul>${ingredientsList}</ul>
+                </div>
+                
+                <div class="steps-list">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">طريقة التحضير:</h3>
+                    <ol>${stepsList}</ol>
+                </div>
+                
+                <div style="background: #f0f7ff; padding: 1rem; border-radius: 10px; margin-top: 1.5rem;">
+                    <strong style="color: #667eea;">💡 نصيحة:</strong> يمكنك تعديل الكميات حسب رغبتك، وإضافة التوابل المفضلة لديك لنكهة أفضل.
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeRecipe() {
+            document.getElementById('recipeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('recipeModal');
+            if (event.target == modal) {
+                closeRecipe();
+            }
+        }
+        
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.recipe-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
